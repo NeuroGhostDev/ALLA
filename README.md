@@ -8,7 +8,7 @@ Alla — это автономный AI-ассистент класса DevSecOp
 
 Система использует архитектуру мульти-агентного взаимодействия для автономного решения задач.
 
-````mermaid
+```mermaid
 graph TD
     User["User Request"] --> Orch["Orchestrator"]
 
@@ -26,7 +26,9 @@ graph TD
 
     SRE -->|Monitor| Prom["Prometheus"]
     Jan -->|Clean| Docker["Docker"]
-```- **Integration Agent (Архитектор)**: Создает новые интеграции и плагины "на лету".
+```
+
+- **Integration Agent (Архитектор)**: Создает новые интеграции и плагины "на лету".
   - **7-ступенчатый пайплайн**: Поиск доков -> Генерация кода -> Проверка безопасности -> Установка библиотек -> Настройка конфига -> Тестирование -> Сохранение.
   - **Автономность**: Сам находит документацию, пишет код, устанавливает зависимости (`pip`) и правит `.env`.
 - **QA Agent (Тестировщик)**:
@@ -57,7 +59,7 @@ graph TD
 
 Продвинутая система защиты на базе машинного обучения и правил.
 
-```mermaid
+````mermaid
 flowchart LR
     Traffic["Incoming Traffic"] --> Sniffer["Traffic Sniffing"]
     Sniffer --> Features["Feature Extraction (52 dims)"]
@@ -75,7 +77,8 @@ flowchart LR
     Verdict -->|Safe| Allow["Allow Traffic"]
 
     Block --> Notify["Alert Manager"]
-```- **ML Anomaly Detection (v4)**:
+````
+- **ML Anomaly Detection (v4)**:
   - **Ансамбль моделей**: Isolation Forest, Autoencoder, Half-Space Trees (Online Learning).
   - **Stacking**: Мета-модель XGBoost для объединения результатов.
   - **Детекция**: DDoS, сканирование портов, брутфорс, аномальный трафик.
@@ -93,7 +96,7 @@ flowchart LR
 
 Полный контроль над серверами и контейнерами.
 
-```mermaid
+````mermaid
 graph TD
     Bot["Alla Agent"] -->|Manage| Docker["Docker Engine"]
     Bot -->|Manage| K8s["Kubernetes"]
@@ -106,7 +109,8 @@ graph TD
 
     Prom -->|Alerts| Bot
     Docker -->|Logs| Bot
-```- **Docker Management**:
+````
+- **Docker Management**:
   - Мониторинг контейнеров (CPU, RAM, Net).
   - Управление: Start, Stop, Restart, Logs.
   - Детекция "зомби-контейнеров" (FinOps).
@@ -156,7 +160,7 @@ graph TD
 
 Алла помнит всё и понимает, с кем говорит.
 
-```mermaid
+````mermaid
 sequenceDiagram
     participant User
     participant Alla as Alla Bot
@@ -181,7 +185,8 @@ sequenceDiagram
 
     Alla->>User: Response
     Alla->>Redis: Update History
-```- **Personal Context (Персональная память)**:
+````
+- **Personal Context (Персональная память)**:
   - Для каждого пользователя ведется отдельная история диалога в Redis.
   - Алла помнит предыдущие вопросы и контекст беседы (до 50 сообщений, TTL 24 часа).
   - Даже в групповом чате она различает пользователей и отвечает каждому с учетом его личной истории общения.
@@ -230,5 +235,5 @@ sequenceDiagram
 
 ---
 
-_Документ сгенерирован автоматически на основе глубокого анализа кодовой базы проекта ALLA._
-````
+_Документ сгенерирован автоматически на основе глубокого анализа кодовой базы проекта ALLA by NeuroGhost._
+
