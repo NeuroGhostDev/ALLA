@@ -8,6 +8,26 @@ Alla — это автономный AI-ассистент класса DevSecOp
 
 Система использует архитектуру мульти-агентного взаимодействия для автономного решения задач.
 
+```mermaid
+graph TD
+    User[User Request] --> Orch[Orchestrator]
+
+    subgraph "Specialized Agents"
+        Orch -->|Dev Task| Int[Integration Agent]
+        Orch -->|Security| Sent[Sentinel Agent]
+        Orch -->|Reliability| SRE[SRE Agent]
+        Orch -->|Cleanup| Jan[Janitor Agent]
+    end
+
+    Int -->|Generate| Code[Code]
+    Code -->|Audit| Sent
+    Sent -->|Approve| QA[QA Agent]
+    QA -->|Test| Deploy[Deployment]
+
+    SRE -->|Monitor| Prom[Prometheus]
+    Jan -->|Clean| Docker[Docker]
+```
+
 - **Integration Agent (Архитектор)**: Создает новые интеграции и плагины "на лету".
   - **7-ступенчатый пайплайн**: Поиск доков -> Генерация кода -> Проверка безопасности -> Установка библиотек -> Настройка конфига -> Тестирование -> Сохранение.
   - **Автономность**: Сам находит документацию, пишет код, устанавливает зависимости (`pip`) и правит `.env`.
@@ -39,6 +59,26 @@ Alla — это автономный AI-ассистент класса DevSecOp
 
 Продвинутая система защиты на базе машинного обучения и правил.
 
+```mermaid
+flowchart LR
+    Traffic[Incoming Traffic] --> Sniffer[Traffic Sniffing]
+    Sniffer --> Features[Feature Extraction (52 dims)]
+
+    subgraph "Detection Layer"
+        Features --> ML[ML Ensemble (IsoForest, VAE)]
+        Features --> Rules[Rule-Based DPI]
+        ML --> Stack[Stacking Model (XGBoost)]
+    end
+
+    Stack --> Verdict{Verdict}
+    Rules --> Verdict
+
+    Verdict -->|Malicious| Block[Block IP (iptables)]
+    Verdict -->|Safe| Allow[Allow Traffic]
+
+    Block --> Notify[Alert Manager]
+```
+
 - **ML Anomaly Detection (v4)**:
   - **Ансамбль моделей**: Isolation Forest, Autoencoder, Half-Space Trees (Online Learning).
   - **Stacking**: Мета-модель XGBoost для объединения результатов.
@@ -56,6 +96,21 @@ Alla — это автономный AI-ассистент класса DevSecOp
 ## 🏗️ 3. Управление Инфраструктурой (Ops)
 
 Полный контроль над серверами и контейнерами.
+
+```mermaid
+graph TD
+    Bot[Alla Agent] -->|Manage| Docker[Docker Engine]
+    Bot -->|Manage| K8s[Kubernetes]
+    Bot -->|Monitor| Prom[Prometheus]
+
+    subgraph "Secure AI Connectivity"
+        Bot -->|Proxy| VPN[VPN Gateway (Gluetun)]
+        VPN -->|Encrypted| Gemini[Gemini API]
+    end
+
+    Prom -->|Alerts| Bot
+    Docker -->|Logs| Bot
+```
 
 - **Docker Management**:
   - Мониторинг контейнеров (CPU, RAM, Net).
@@ -107,6 +162,32 @@ Alla — это автономный AI-ассистент класса DevSecOp
 
 Алла помнит всё и понимает, с кем говорит.
 
+```mermaid
+sequenceDiagram
+    participant User
+    participant Alla as Alla Bot
+    participant Redis as Memory (Redis)
+    participant AI as Gemini AI
+
+    User->>Alla: Message
+    Alla->>Redis: Get User History & Role
+    Redis-->>Alla: Context Data
+
+    Alla->>Alla: Classify Intent (Casual vs Technical)
+
+    alt Technical Request
+        Alla->>System: Gather Metrics/Logs
+        Alla->>AI: Analyze Problem + Context
+        AI-->>Alla: Solution
+    else Casual Chat
+        Alla->>AI: Chat with Personality
+        AI-->>Alla: Friendly Response
+    end
+
+    Alla->>User: Response
+    Alla->>Redis: Update History
+```
+
 - **Personal Context (Персональная память)**:
   - Для каждого пользователя ведется отдельная история диалога в Redis.
   - Алла помнит предыдущие вопросы и контекст беседы (до 50 сообщений, TTL 24 часа).
@@ -156,4 +237,4 @@ Alla — это автономный AI-ассистент класса DevSecOp
 
 ---
 
-_Документ сгенерирован автоматически на основе глубокого анализа кодовой базы проекта ALLA by NeuroGhost._
+_Документ сгенерирован автоматически на основе глубокого анализа кодовой базы проекта ML-Firewall._
